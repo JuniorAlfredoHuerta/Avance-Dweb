@@ -1,0 +1,49 @@
+<div class="register">
+    <form class="product-form" [formGroup]="tiendaProductForm" (ngSubmit)="registrarTiendaProducto()">
+        <h1>Registra Producto</h1>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label> ID Producto </mat-label>
+                <mat-select formControlName="productoid">
+                    <mat-option *ngFor="let product of productos" [value]="product.id">
+                        {{product.nombre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label> ID Tienda </mat-label>
+                <input formControlName="tiendaid" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label> Precio</mat-label>
+                <input formControlName="precio" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label> Stock </mat-label>
+                <input formControlName="stock" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label> Descuento</mat-label>
+                <input formControlName="descuento" matInput>
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="text-right">
+        <button (click)='registrarTiendaProducto()' type="submit" mat-button color="primary"
+            [disabled]="!tiendaProductForm.valid"> Registrar </button>
+    </div>
+    
+</div>
+
+
+<div class="listado-productos" *ngIf="tienda_productos">
+    <div *ngFor="let ps of tienda_productos">
+        <span> Producto: </span>{{ps.productoid}} <br>
+        <span> Tienda: </span> {{ps.tiendaid}} <br>
+        <span> Descuento: </span> {{ps.descuento}} <br>
+        <span> Precio: </span> {{ps.precio}} <br>
+        <span> Stock: </span> {{ps.stock}} <br>
+        <br>
+    </div>
+</div>

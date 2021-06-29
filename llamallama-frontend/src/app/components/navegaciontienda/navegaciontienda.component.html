@@ -1,0 +1,41 @@
+<app-headercliente></app-headercliente>
+<div class="container">
+    <div class="row" [formGroup]="busquedaForm">
+        <mat-form-field>
+            <mat-label> Busqueda por tienda, producto o categoria... </mat-label>
+            <input formControlName="texto" matInput>
+        </mat-form-field>
+        <button mdbBtn size="sm" gradient="aqua" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit" (click)="busquedaNomProd()">
+            Busqueda por Nombre de Producto</button>
+        <button mdbBtn size="sm" gradient="aqua" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit" (click)="busquedaNomTienda()">
+            Busqueda por nombre de Tienda</button>
+        <button mdbBtn size="sm" gradient="aqua" rounded="true" class="my-0 waves-light" mdbWavesEffect type="submit" (click)="busquedaNomCat()">
+            Busqueda por Categoria</button>
+        <div class="col-md-4" *ngFor="let tp of tps">
+            <mat-card class="card-theme">
+                <mat-card-header>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-card-title>{{tp.prodN}}</mat-card-title>
+                    <mat-card-subtitle>Tienda: {{tp.tname}}</mat-card-subtitle>
+                    <mat-card-subtitle>Categoria: {{tp.catN}}</mat-card-subtitle>
+                    <mat-card-subtitle>Precio: S/. {{tp.precio}} </mat-card-subtitle>
+                </mat-card-content>
+            </mat-card>
+
+            <div>
+                <span class="spacer"></span>
+
+                    <mat-card-actions>
+                        <button >Agregar al carrito</button>
+                        <mat-form-field>
+                            <mat-label>  Cantidad </mat-label>
+                            <input fromControlName="cantid" matInput>
+                       </mat-form-field>
+                        <button mat-button [routerLink]="['/compra', tp.tiendaid,tp.productoid]">Comprar</button> 
+                    </mat-card-actions>
+                </div>
+
+        </div>
+    </div>
+</div>

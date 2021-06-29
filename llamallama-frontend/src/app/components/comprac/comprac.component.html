@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row" *ngIf="TPID">
+        <mat-card>
+            
+            <form class="booking-form" [formGroup]="compraform" (ngSubmit)="createCompraProducto" >
+                <h1>Compra de Producto: {{TPID.prodN}}</h1>
+                <h2>En tienda {{TPID.tname}}</h2>
+                <div class="col-md-4" >
+                    <mat-label>El precio es  S/. {{TPID.precio}}</mat-label>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Cantidad de Productos</mat-label>
+                        <input type="number" formControlName="cantproductos" matInput>
+                    </mat-form-field>
+                    <mat-label> </mat-label>
+                    <mat-form-field>
+                        <mat-label>Id de compra</mat-label>
+                        <input type="string" formControlName="compraId" matInput>
+                    </mat-form-field>
+                </div> 
+                <div class="text-right">
+                    <button (click)='createCompraProducto()' type="submit" mat-button color="primary"
+                        [disabled]="!compraform.valid">Comprar</button>
+                    <button>Cancelar Compra</button>
+                </div>
+
+            </form>
+        </mat-card>
+    </div>
+</div>
